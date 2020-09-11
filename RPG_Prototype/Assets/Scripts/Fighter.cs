@@ -1,4 +1,5 @@
-﻿using RPG.Core;
+﻿using RPG.Combat;
+using RPG.Core;
 using RPG.Movement;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,11 +10,16 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float attackRange = 2f;
+        [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] float weaponDamage = 5f;
 
         Transform target;
+        float timeSincePreviousAttack = 0;
 
         private void Update()
         {
+
+            timeSincePreviousAttack += Time.deltaTime;
             
             if (target == null) return;
 
@@ -24,8 +30,19 @@ namespace RPG.Combat
             else
             {
                 GetComponent<Mover>().Cancel();
-            }
-            
+
+                if (timeSincePreviousAttack >= timeBetweenAttacks)
+                {
+                    GetComponent<Animator>().SetTrigger("attack");
+                    timeSincePreviousAttack = 0;
+                }
+            }           
+        }
+
+        // Animation event
+        void Hit()
+        {
+            target.GetComponent<Health>().TakeDamage(weaponDamage);
         }
 
         private bool InRangeOfTarget()
@@ -43,5 +60,6 @@ namespace RPG.Combat
         {
             target = null;
         }
+     
     }
 }
