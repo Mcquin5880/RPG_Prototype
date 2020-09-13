@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
+using RPG.Core;
 
 namespace RPG.Control
 {
     public class Player : MonoBehaviour
     {
+        Health health;
+
+        private void Start()
+        {
+            health = GetComponent<Health>();
+        }
 
         private void Update()
         {
+            if (!health.IsAlive()) return;
+
             if (CombatInteraction()) return;
             if (MovementInteraction()) return;
             print("Nothing to do");

@@ -10,17 +10,20 @@ namespace RPG.Movement
     {
         NavMeshAgent navMeshAgent;
         Animator animator;
+        Health health;
 
         // Start is called before the first frame update
         void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
+            health = GetComponent<Health>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            navMeshAgent.enabled = health.IsAlive();
             UpdateAnimator();
         }
 
