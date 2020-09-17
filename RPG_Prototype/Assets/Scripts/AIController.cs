@@ -9,9 +9,10 @@ namespace RPG.Control
 {
     public class AIController : MonoBehaviour
     {
-        [SerializeField] float chaseRadius = 7f;
-        [SerializeField] float suspicionTime = 3f;
         [SerializeField] WaypointPatrol waypointPatrol;
+        [SerializeField] float chaseRadius = 7f;      
+        [SerializeField] float suspicionTime = 3f;
+        [SerializeField] float waypointPauseTime = 4f;
         [SerializeField] float waypointTolerance = 1.5f;
 
         Health health;      
@@ -20,9 +21,9 @@ namespace RPG.Control
 
         GameObject player;
         float timeSinceSeenPlayer = Mathf.Infinity;
+        float timeSinceWaypointArrival = Mathf.Infinity;
         Vector3 defaultPosition;
         int currentWaypointIndex = 0;
-
 
         private void Start()
         {
@@ -40,20 +41,25 @@ namespace RPG.Control
 
             if (InAttackRange() && fighter.CanAttack(player))
             {
-                Debug.Log(this.name + " chasing player!");
-                timeSinceSeenPlayer = 0;
-                fighter.Attack(player);
+                Attack();
             }
             else if (timeSinceSeenPlayer <= suspicionTime)
             {
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             }
             else
-            {
-                //mover.StartMoveAction(defaultPosition);   
+            {                
                 Patrol();
             }
             timeSinceSeenPlayer += Time.deltaTime;
+            timeSinceWaypointArrival += Time.deltaTime;
+        }
+
+        private void Attack()
+        {
+            Debug.Log(this.name + " is chasing player!");
+            timeSinceSeenPlayer = 0;
+            fighter.Attack(player);
         }
 
         private bool InAttackRange()
@@ -64,14 +70,38 @@ namespace RPG.Control
 
         private void Patrol()
         {
+            Vector3 nextPosition = defaultPosition;
+
             if (waypointPatrol != null)
             {
-                float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
-                if (distanceToWaypoint <= waypointTolerance)
+                if (AtWaypoint())
                 {
-
+                    timeSinceWaypointArrival = 0;
+                    CycleWaypoint();
                 }
+                nextPosition = GetCurrentWaypoint();
             }
+
+            if (timeSinceWaypointArrival > waypointPauseTime)
+            {        
+                mover.StartMoveAction(nextPosition);
+            }        
+        }
+
+        private bool AtWaypoint()
+        {
+            float distanceToNextWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+            return distanceToNextWaypoint <= waypointTolerance;
+        }
+
+        private Vector3 GetCurrentWaypoint()
+        {
+            return waypointPatrol.GetWaypoint(currentWaypointIndex);
+        }
+
+        private void CycleWaypoint()
+        {
+            currentWaypointIndex = waypointPatrol.GetNextIndex(currentWaypointIndex);
         }
 
         private void OnDrawGizmosSelected()
