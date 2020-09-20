@@ -25,7 +25,7 @@ namespace RPG.Combat
 
             if (target != null && !InRangeOfTarget())
             {
-                GetComponent<Mover>().MoveToLocation(target.transform.position);
+                GetComponent<Mover>().MoveToLocation(target.transform.position, 1f);
             }
             else
             {

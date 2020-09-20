@@ -14,6 +14,7 @@ namespace RPG.Control
         [SerializeField] float suspicionTime = 3f;
         [SerializeField] float waypointPauseTime = 4f;
         [SerializeField] float waypointTolerance = 1.5f;
+        [Range(0, 1)] [SerializeField] float patrolSpeedFraction = 0.2f;
 
         Health health;      
         Fighter fighter;
@@ -84,7 +85,7 @@ namespace RPG.Control
 
             if (timeSinceWaypointArrival > waypointPauseTime)
             {        
-                mover.StartMoveAction(nextPosition);
+                mover.StartMoveAction(nextPosition, patrolSpeedFraction);
             }        
         }
 

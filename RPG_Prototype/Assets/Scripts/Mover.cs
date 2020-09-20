@@ -8,6 +8,7 @@ namespace RPG.Movement
 {
     public class Mover : MonoBehaviour, IAction
     {
+        [SerializeField] float maximumSpeed = 6f;
         NavMeshAgent navMeshAgent;
         Animator animator;
         Health health;
@@ -27,16 +28,16 @@ namespace RPG.Movement
             UpdateAnimator();
         }
 
-        public void StartMoveAction(Vector3 destination)
+        public void StartMoveAction(Vector3 destination, float speedFraction)
         {
-            GetComponent<ActionScheduler>().StartAction(this);          
-            //GetComponent<Fighter>().Cancel(); remove
-            MoveToLocation(destination);
+            GetComponent<ActionScheduler>().StartAction(this);                  
+            MoveToLocation(destination, speedFraction);
         }
 
-        public void MoveToLocation(Vector3 destination)
+        public void MoveToLocation(Vector3 destination, float speedFraction)
         {
             navMeshAgent.isStopped = false;
+            navMeshAgent.speed = maximumSpeed * Mathf.Clamp01(speedFraction);
             navMeshAgent.destination = destination;
         }
 
@@ -46,7 +47,7 @@ namespace RPG.Movement
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
             {
-                MoveToLocation(hit.point);
+                MoveToLocation(hit.point, 1f);
             }
         }
 
