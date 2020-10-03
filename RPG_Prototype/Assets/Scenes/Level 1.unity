@@ -4065,6 +4065,106 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dce1a891bc9f6744f8c11b28a4bf775d, type: 3}
+--- !u!1001 &457811355
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 684255471946537371, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.114
+      objectReference: {fileID: 0}
+    - target: {fileID: 684255471946537371, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -31.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.91747713
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.39778864
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 133.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 989544331075379711, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472586091777821850, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: m_Name
+      value: Portal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891723611585615826, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: sceneIndexToLoad
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891723611585615826, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: playerSpawnPoint
+      value: 
+      objectReference: {fileID: 457811356}
+    - target: {fileID: 3891723611585615826, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+        type: 3}
+      propertyPath: destination
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb, type: 3}
+--- !u!4 &457811356 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 684255471946537371, guid: 1bc67906fc6a5e847b7db49a0bfb2bcb,
+    type: 3}
+  m_PrefabInstance: {fileID: 457811355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &465014550
 PrefabInstance:
   m_ObjectHideFlags: 0
