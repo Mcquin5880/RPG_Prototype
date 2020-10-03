@@ -15,6 +15,9 @@ namespace RPG.SceneManagement
         [SerializeField] int sceneIndexToLoad = -1;
         [SerializeField] Transform playerSpawnPoint;
         [SerializeField] DestinationID destination;
+        [SerializeField] float fadeOutTime = 1f;
+        [SerializeField] float fadeInTime = 2f;
+        [SerializeField] float fadePauseTime = 0.5f;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -29,16 +32,21 @@ namespace RPG.SceneManagement
             if (sceneIndexToLoad < 0)
             {
                 Debug.LogError("Scene to load not set");
+                yield break;
             }
 
+            SceneTransitionFader fader = FindObjectOfType<SceneTransitionFader>();
 
             DontDestroyOnLoad(this.gameObject);
+
+            yield return fader.FadeOut(fadeOutTime);
             yield return SceneManager.LoadSceneAsync(sceneIndexToLoad);
 
             Portal exitPortal = GetExitPortal();
             SpawnPlayerAtExitPortal(exitPortal);
 
-
+            yield return new WaitForSeconds(fadePauseTime);
+            yield return fader.FadeIn(fadeInTime);
 
             Destroy(gameObject);
         }
