@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8514125845054381994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9187594939080857894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0151bb8986bb5db4bb4322ce53997d66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5358577376767558805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +18,18 @@ MonoBehaviour:
   waypointPauseTime: 4
   waypointTolerance: 1.5
   patrolSpeedFraction: 0.2
+--- !u!114 &8514125845054381994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9187594939080857894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0151bb8986bb5db4bb4322ce53997d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7062369992481707224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5130328800086470906, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+        type: 3}
+      propertyPath: maximumSpeed
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 239db3ac040868b4eb8fc5ff86c9d5ff, type: 3}

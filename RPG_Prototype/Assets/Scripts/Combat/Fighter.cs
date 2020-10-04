@@ -25,11 +25,11 @@ namespace RPG.Combat
 
             if (target != null && !InRangeOfTarget())
             {
-                GetComponent<Mover>().MoveToLocation(target.transform.position, 1f);
+                GetComponent<MovementHandler>().MoveToLocation(target.transform.position, 1f);
             }
             else
             {
-                GetComponent<Mover>().Cancel();
+                GetComponent<MovementHandler>().Cancel();
                 transform.LookAt(target.transform);
                 if (timeSincePreviousAttack >= timeBetweenAttacks)
                 {
@@ -71,7 +71,7 @@ namespace RPG.Combat
             GetComponent<Animator>().ResetTrigger("attack");
             GetComponent<Animator>().SetTrigger("stopAttacking");
             target = null;
-            GetComponent<Mover>().Cancel();
+            GetComponent<MovementHandler>().Cancel();
         }
      
     }

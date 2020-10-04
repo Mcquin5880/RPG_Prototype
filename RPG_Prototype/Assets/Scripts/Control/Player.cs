@@ -22,7 +22,7 @@ namespace RPG.Control
 
             if (CombatInteraction()) return;
             if (MovementInteraction()) return;
-            print("Nothing to do");
+            print("Raycast hitting neither movement or combat interaction");
         }
 
         private bool CombatInteraction()
@@ -55,7 +55,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().StartMoveAction(hit.point, 1f);
+                    GetComponent<MovementHandler>().StartMoveAction(hit.point, 1f);
                 }
                 return true;
             }

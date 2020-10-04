@@ -14184,6 +14184,11 @@ PrefabInstance:
       propertyPath: chaseRadius
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5358577376767558805, guid: 6422e9f303aed96429b7511b6336bfec,
+        type: 3}
+      propertyPath: waypointPatrol
+      value: 
+      objectReference: {fileID: 2816399269984200274}
     - target: {fileID: 6494961476669153350, guid: 6422e9f303aed96429b7511b6336bfec,
         type: 3}
       propertyPath: uniqueIdentifier

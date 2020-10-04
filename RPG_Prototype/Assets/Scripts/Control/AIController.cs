@@ -18,7 +18,7 @@ namespace RPG.Control
 
         Health health;      
         Fighter fighter;
-        Mover mover;
+        MovementHandler mover;
 
         GameObject player;
         float timeSinceSeenPlayer = Mathf.Infinity;
@@ -30,7 +30,7 @@ namespace RPG.Control
         {
             health = GetComponent<Health>();
             fighter = GetComponent<Fighter>();
-            mover = GetComponent<Mover>();
+            mover = GetComponent<MovementHandler>();
 
             player = GameObject.FindWithTag("Player");
             defaultPosition = transform.position;
