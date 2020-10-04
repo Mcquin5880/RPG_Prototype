@@ -15,6 +15,7 @@ namespace RPG.SceneManagement
         [SerializeField] int sceneIndexToLoad = -1;
         [SerializeField] Transform playerSpawnPoint;
         [SerializeField] DestinationID destination;
+
         [SerializeField] float fadeOutTime = 1f;
         [SerializeField] float fadeInTime = 2f;
         [SerializeField] float fadePauseTime = 0.5f;
@@ -40,7 +41,16 @@ namespace RPG.SceneManagement
             DontDestroyOnLoad(this.gameObject);
 
             yield return fader.FadeOut(fadeOutTime);
+
+            // save current level here
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            savingWrapper.Save();
+
             yield return SceneManager.LoadSceneAsync(sceneIndexToLoad);
+
+            // load current level state here
+            savingWrapper.Load();
+
 
             Portal exitPortal = GetExitPortal();
             SpawnPlayerAtExitPortal(exitPortal);
