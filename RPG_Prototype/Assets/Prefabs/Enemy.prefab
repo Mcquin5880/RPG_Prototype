@@ -12,6 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0151bb8986bb5db4bb4322ce53997d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5358577376767558805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9187594939080857894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14074ec928f731b42b067af2da5ad217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointPatrol: {fileID: 0}
+  chaseRadius: 7
+  suspicionTime: 3
+  waypointPauseTime: 4
+  waypointTolerance: 1.5
+  patrolSpeedFraction: 0.2
 --- !u!1001 &7062369992481707224
 PrefabInstance:
   m_ObjectHideFlags: 0

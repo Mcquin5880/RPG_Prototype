@@ -43,13 +43,13 @@ namespace RPG.SceneManagement
             yield return fader.FadeOut(fadeOutTime);
 
             // save current level here
-            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
-            savingWrapper.Save();
+            //SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            //savingWrapper.Save();
 
             yield return SceneManager.LoadSceneAsync(sceneIndexToLoad);
 
             // load current level state here
-            savingWrapper.Load();
+            //savingWrapper.Load();
 
 
             Portal exitPortal = GetExitPortal();
