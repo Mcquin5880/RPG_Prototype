@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace RPG.SceneManagement
@@ -43,17 +44,19 @@ namespace RPG.SceneManagement
             yield return fader.FadeOut(fadeOutTime);
 
             // save current level here
-            //SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
-            //savingWrapper.Save();
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            savingWrapper.Save();
 
             yield return SceneManager.LoadSceneAsync(sceneIndexToLoad);
 
             // load current level state here
-            //savingWrapper.Load();
+            savingWrapper.Load();
 
 
             Portal exitPortal = GetExitPortal();
             SpawnPlayerAtExitPortal(exitPortal);
+
+            savingWrapper.Save();
 
             yield return new WaitForSeconds(fadePauseTime);
             yield return fader.FadeIn(fadeInTime);
@@ -76,8 +79,10 @@ namespace RPG.SceneManagement
         private void SpawnPlayerAtExitPortal(Portal exitPortal)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<NavMeshAgent>().enabled = false;
             player.transform.position = exitPortal.playerSpawnPoint.position;
             player.transform.rotation = exitPortal.playerSpawnPoint.rotation;
+            player.GetComponent<NavMeshAgent>().enabled = true;
         }
     }
 }

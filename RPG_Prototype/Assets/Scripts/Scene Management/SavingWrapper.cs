@@ -9,6 +9,14 @@ namespace RPG.SceneManagement
     {
         const string defaultSaveFile = "save";
 
+        IEnumerator Start()
+        {
+            SceneTransitionFader sceneTransitionFader = FindObjectOfType<SceneTransitionFader>();
+            sceneTransitionFader.InstantFadeOut();
+            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
+            yield return sceneTransitionFader.FadeIn(2);
+        }
+
         // Update is called once per frame
         void Update()
         {
