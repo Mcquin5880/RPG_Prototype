@@ -136,6 +136,10 @@ MonoBehaviour:
   attackRange: 2
   timeBetweenAttacks: 1
   weaponDamage: 5
+  weaponPrefab: {fileID: 5881346849542618248, guid: bdb86138737efb94d981441630dcca5a,
+    type: 3}
+  handTransform: {fileID: 4679919216129241673}
+  weaponAnimOverride: {fileID: 22100000, guid: 01f5b07afc0e8c149af5b046f8eaccb5, type: 2}
 --- !u!114 &4679919216173909767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +282,12 @@ PrefabInstance:
 --- !u!4 &4679919216129334999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 435482, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4679919216129702861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4679919216129241673 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7,
     type: 3}
   m_PrefabInstance: {fileID: 4679919216129702861}
   m_PrefabAsset: {fileID: 0}
