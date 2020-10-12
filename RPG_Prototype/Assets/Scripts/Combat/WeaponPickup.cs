@@ -1,18 +1,20 @@
-﻿using RPG.Combat;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPickup : MonoBehaviour
+namespace RPG.Combat
 {
-    [SerializeField] Weapon weapon;
-
-    private void OnTriggerEnter(Collider other)
+    public class WeaponPickup : MonoBehaviour
     {
-        if (other.gameObject.tag == "Player")
+        [SerializeField] Weapon weapon;
+
+        private void OnTriggerEnter(Collider other)
         {
-            GetComponent<Fighter>().EquipWeapon(weapon);
-            Destroy(gameObject);
+            if (other.gameObject.tag == "Player")
+            {
+                other.GetComponent<Fighter>().EquipWeapon(weapon);
+                Destroy(gameObject);
+            }
         }
     }
 }
