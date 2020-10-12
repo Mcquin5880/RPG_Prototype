@@ -107,11 +107,28 @@ PrefabInstance:
       propertyPath: maximumSpeed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6968466837073087007, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: f6c0f44635e4b434db81da6c68d9713f,
+        type: 2}
+    - target: {fileID: 6968466837073087007, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+        type: 3}
+      propertyPath: weaponSpawnPoint
+      value: 
+      objectReference: {fileID: 9223194938760263945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 239db3ac040868b4eb8fc5ff86c9d5ff, type: 3}
 --- !u!1 &9187594939080857894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2126386203289144830, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 7062369992481707224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9223194938760263945 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2161106567821028817, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
     type: 3}
   m_PrefabInstance: {fileID: 7062369992481707224}
   m_PrefabAsset: {fileID: 0}

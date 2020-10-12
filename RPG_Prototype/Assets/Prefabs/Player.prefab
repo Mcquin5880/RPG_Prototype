@@ -133,11 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28ab378b24b2ee49bad1450fe403703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
   timeBetweenAttacks: 1
-  weaponDamage: 5
   weaponSpawnPoint: {fileID: 4679919216129241673}
-  weapon: {fileID: 11400000, guid: 8dc9d60699ef2534fb058084a0fd787e, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: f6c0f44635e4b434db81da6c68d9713f, type: 2}
 --- !u!114 &4679919216173909767
 MonoBehaviour:
   m_ObjectHideFlags: 0
