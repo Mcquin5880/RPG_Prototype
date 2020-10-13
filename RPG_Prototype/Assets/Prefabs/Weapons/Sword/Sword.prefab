@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4555940781364071801}
   m_Layer: 0
-  m_Name: Equip_Sword
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

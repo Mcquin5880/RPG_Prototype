@@ -135,8 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
-  weaponSpawnPoint: {fileID: 4679919216129241673}
-  defaultWeapon: {fileID: 11400000, guid: f6c0f44635e4b434db81da6c68d9713f, type: 2}
+  rightHandSpawnPoint: {fileID: 4679919216129241673}
+  leftHandSpawnPoint: {fileID: 4679919216129298977}
+  defaultWeapon: {fileID: 11400000, guid: 647619f326a4c334188488eaf34f94cb, type: 2}
 --- !u!114 &4679919216173909767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +296,12 @@ PrefabInstance:
 --- !u!4 &4679919216129334999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 435482, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4679919216129702861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4679919216129298977 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403948, guid: 679ff741e12a7e740819ede24a7000b7,
     type: 3}
   m_PrefabInstance: {fileID: 4679919216129702861}
   m_PrefabAsset: {fileID: 0}
