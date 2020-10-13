@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RPG.Core;
+using UnityEngine;
 
 namespace RPG.Combat
 {
@@ -10,6 +11,7 @@ namespace RPG.Combat
         [SerializeField] GameObject equipPrefab = null;
         [SerializeField] AnimatorOverrideController animatorOverride = null;
         [SerializeField] bool isRightHanded = true;
+        [SerializeField] Projectile projectile = null;
 
         public float GetWeaponDamage()
         {
@@ -21,24 +23,42 @@ namespace RPG.Combat
             return this.attackRange;
         }
 
+        public bool HasProjectile()
+        {
+            return projectile != null;
+        }
+
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
+        {
+            Projectile projectileInstance = Instantiate(projectile, GetTransform(rightHand, leftHand).position, Quaternion.identity);
+            projectileInstance.SetTarget(target);
+        }
+
+        private Transform GetTransform(Transform rightHand, Transform leftHand)
+        {
+            Transform handTransform;
+            if (isRightHanded)
+            {
+                handTransform = rightHand;
+            }
+            else
+            {
+                handTransform = leftHand;
+            }
+            return handTransform;
+        }
+
         public void SpawnWeapon(Transform rightHandTransform, Transform leftHandTransform, Animator animator)
         {
             if (equipPrefab != null)
             {
-                if (isRightHanded)
-                {
-                    Instantiate(equipPrefab, rightHandTransform);
-                }
-                else
-                {
-                    Instantiate(equipPrefab, leftHandTransform);
-                }                             
+                Transform handTransform = GetTransform(rightHandTransform, leftHandTransform);
+                Instantiate(equipPrefab, handTransform);
             }
             if (animatorOverride != null)
             {
                 animator.runtimeAnimatorController = animatorOverride;
             }
-        }
-       
+        }    
     }
 }
