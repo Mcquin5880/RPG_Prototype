@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointPatrol: {fileID: 0}
-  chaseRadius: 7
+  chaseRadius: 12
   suspicionTime: 3
   waypointPauseTime: 4
   waypointTolerance: 1.5
@@ -53,6 +53,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5163604094606687976, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+        type: 3}
+      propertyPath: health
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2126386203289144800, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
         type: 3}
       propertyPath: m_Speed

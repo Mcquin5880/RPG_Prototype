@@ -24,6 +24,7 @@ namespace RPG.Core
                 GetComponent<Animator>().SetTrigger("die");
                 isAlive = false;
                 GetComponent<ActionScheduler>().CancelCurrentAction();
+                GetComponent<CapsuleCollider>().enabled = false;
             }
             Debug.Log("Current health: " + health);
         }

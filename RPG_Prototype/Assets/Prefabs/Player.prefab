@@ -137,7 +137,7 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   rightHandSpawnPoint: {fileID: 4679919216129241673}
   leftHandSpawnPoint: {fileID: 4679919216129298977}
-  defaultWeapon: {fileID: 11400000, guid: 647619f326a4c334188488eaf34f94cb, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: 31b81da21130f5f43a50faf17a410183, type: 2}
 --- !u!114 &4679919216173909767
 MonoBehaviour:
   m_ObjectHideFlags: 0
