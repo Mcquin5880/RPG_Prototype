@@ -6,6 +6,8 @@ namespace RPG.Combat
     [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon", order = 0)]
     public class Weapon : ScriptableObject
     {
+        const string weaponName = "Weapon";
+
         [SerializeField] float weaponDamage = 5f;
         [SerializeField] float attackRange = 2f;      
         [SerializeField] GameObject equipPrefab = null;
@@ -50,15 +52,34 @@ namespace RPG.Combat
 
         public void SpawnWeapon(Transform rightHandTransform, Transform leftHandTransform, Animator animator)
         {
+            DestroyPreviousWeapon(rightHandTransform, leftHandTransform);
+
             if (equipPrefab != null)
             {
                 Transform handTransform = GetTransform(rightHandTransform, leftHandTransform);
-                Instantiate(equipPrefab, handTransform);
+                GameObject weapon = Instantiate(equipPrefab, handTransform);
+                weapon.name = weaponName;
             }
             if (animatorOverride != null)
             {
                 animator.runtimeAnimatorController = animatorOverride;
             }
-        }    
+        }
+
+        private void DestroyPreviousWeapon(Transform rightHandTransform, Transform leftHandTransform)
+        {
+            Transform prevWeapon = rightHandTransform.Find(weaponName);
+            if (prevWeapon == null)
+            {
+                prevWeapon = leftHandTransform.Find(weaponName);
+            }
+            if (prevWeapon == null) return;
+
+            // rename right before destroying as suggested by tutorial
+            prevWeapon.name = "DESTROYING_WEAPON";
+            Destroy(prevWeapon.gameObject);
+        }
+        
+
     }
 }

@@ -7,15 +7,31 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float projectileSpeed = 100f;
+    [SerializeField] bool isHomingProjectile = true;
     Health target = null;
     float damage = 0;
+
+    private void Start()
+    {
+        transform.LookAt(GetAimLocation());
+        StartCoroutine(DestroyIfNoCollisions());
+    }
+
+    //todo: might need to reconsider this depending on the type of projectile
+    IEnumerator DestroyIfNoCollisions()
+    {
+        yield return new WaitForSeconds(10f);
+        Destroy(gameObject);
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (target == null) return;
-
-        transform.LookAt(GetAimLocation());
+        if (isHomingProjectile)
+        {
+            transform.LookAt(GetAimLocation());
+        }
         transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
     }
 
