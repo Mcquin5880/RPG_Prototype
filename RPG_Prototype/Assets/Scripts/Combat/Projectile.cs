@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
         StartCoroutine(DestroyIfNoCollisions());
     }
 
-    //todo: might need to reconsider this depending on the type of projectile
+    //todo: might need to reconsider this depending on the type of projectile, works fine for fast arrows
     IEnumerator DestroyIfNoCollisions()
     {
         yield return new WaitForSeconds(10f);
@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         if (target == null) return;
-        if (isHomingProjectile)
+        if (isHomingProjectile && target.IsAlive())
         {
             transform.LookAt(GetAimLocation());
         }
