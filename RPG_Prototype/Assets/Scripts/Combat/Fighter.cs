@@ -1,13 +1,14 @@
 ﻿using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using RPG.Saving;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         [SerializeField] float timeBetweenAttacks = 1f;     
         [SerializeField] Transform rightHandSpawnPoint = null;
@@ -19,8 +20,11 @@ namespace RPG.Combat
         float timeSincePreviousAttack = Mathf.Infinity;
 
         private void Start()
-        {
-            EquipWeapon(defaultWeapon);
+        {   
+            if (currentWeapon == null)
+            {
+                EquipWeapon(defaultWeapon);
+            }
         }
 
         private void Update()
@@ -103,5 +107,16 @@ namespace RPG.Combat
             return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetAttackRange();
         }
 
+        public object CaptureState()
+        {
+            return currentWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            string weaponName = (string) state;
+            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            EquipWeapon(weapon);
+        }
     }
 }

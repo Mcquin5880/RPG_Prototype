@@ -64,6 +64,14 @@ namespace RPG.Combat
             {
                 animator.runtimeAnimatorController = animatorOverride;
             }
+            else
+            {
+                AnimatorOverrideController overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+                if (overrideController != null)
+                {
+                    animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+                }
+            }
         }
 
         private void DestroyPreviousWeapon(Transform rightHandTransform, Transform leftHandTransform)
