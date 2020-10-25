@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Saving;
+using Cinemachine;
 
 namespace RPG.SceneManagement
 {
     public class SavingWrapper : MonoBehaviour
     {
         const string defaultSaveFile = "save";
+
+        // temp testing for cinemachine cam bugs
+        [SerializeField] GameObject cinemachineCamera;
 
         IEnumerator Start()
         {
@@ -22,6 +26,7 @@ namespace RPG.SceneManagement
         {
             if (Input.GetKeyDown(KeyCode.L))
             {
+                cinemachineCamera.SetActive(false);
                 Load();
             }
             if (Input.GetKeyDown(KeyCode.S))
@@ -33,6 +38,7 @@ namespace RPG.SceneManagement
         public void Load()
         {
             GetComponent<SavingSystem>().Load(defaultSaveFile);
+            cinemachineCamera.SetActive(true);
         }
 
         public void Save()
