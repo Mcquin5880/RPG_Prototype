@@ -13,6 +13,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 647619f326a4c334188488eaf34f94cb,
         type: 2}
+    - target: {fileID: 778142257479167107, guid: 6422e9f303aed96429b7511b6336bfec,
+        type: 3}
+      propertyPath: characterClass
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5358577376767558805, guid: 6422e9f303aed96429b7511b6336bfec,
         type: 3}
       propertyPath: chaseRadius
