@@ -1,10 +1,7 @@
-﻿using RPG.Combat;
-using RPG.Core;
-using RPG.Movement;
+﻿using RPG.Movement;
 using RPG.Saving;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using RPG.Core;
 
 namespace RPG.Combat
 {
@@ -15,7 +12,7 @@ namespace RPG.Combat
         [SerializeField] Transform leftHandSpawnPoint = null;
         [SerializeField] Weapon defaultWeapon = null;
 
-        Health target;
+        Resources.Health target;
         Weapon currentWeapon = null;
         float timeSincePreviousAttack = Mathf.Infinity;
 
@@ -84,14 +81,14 @@ namespace RPG.Combat
         {
             if (combatTarget == null) return false;
 
-            Health targetToTest = combatTarget.GetComponent<Health>();
+            Resources.Health targetToTest = combatTarget.GetComponent<Resources.Health>();
             return targetToTest != null && targetToTest.IsAlive();
         }
 
         public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.GetComponent<Health>();   
+            target = combatTarget.GetComponent<Resources.Health>();   
         }
 
         public void Cancel()
@@ -115,7 +112,7 @@ namespace RPG.Combat
         public void RestoreState(object state)
         {
             string weaponName = (string) state;
-            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
         }
     }
