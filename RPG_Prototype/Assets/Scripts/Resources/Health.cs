@@ -34,6 +34,11 @@ namespace RPG.Resources
             Debug.Log("Current health: " + health);
         }
 
+        public float GetHealthAsPercentage()
+        {
+            return 100 * health / GetComponent<BaseStats>().GetHealth();
+        }
+
         // -----------------------------------------------------------------------------------------------------------------------
         // Saving
         // -----------------------------------------------------------------------------------------------------------------------
