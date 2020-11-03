@@ -2,6 +2,7 @@
 using RPG.Saving;
 using UnityEngine;
 using RPG.Core;
+using RPG.Resources;
 
 namespace RPG.Combat
 {
@@ -12,7 +13,7 @@ namespace RPG.Combat
         [SerializeField] Transform leftHandSpawnPoint = null;
         [SerializeField] Weapon defaultWeapon = null;
 
-        Resources.Health target;
+        Health target;
         Weapon currentWeapon = null;
         float timeSincePreviousAttack = Mathf.Infinity;
 
@@ -55,7 +56,12 @@ namespace RPG.Combat
             weapon.SpawnWeapon(rightHandSpawnPoint, leftHandSpawnPoint, anim);
         }
 
-        // Animation event
+        public Health GetTarget()
+        {
+            return target;
+        }
+
+        // Animation event methods
         // --------------------------------------------------------------------------------
         void Hit()
         {
@@ -63,11 +69,11 @@ namespace RPG.Combat
 
             if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LaunchProjectile(rightHandSpawnPoint, leftHandSpawnPoint, target);
+                currentWeapon.LaunchProjectile(rightHandSpawnPoint, leftHandSpawnPoint, target, gameObject);
             }
             else
             {
-                target.TakeDamage(currentWeapon.GetWeaponDamage());
+                target.TakeDamage(this.gameObject, currentWeapon.GetWeaponDamage());
             }
         }
 

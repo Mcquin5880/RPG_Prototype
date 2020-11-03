@@ -20,9 +20,9 @@ namespace RPG.Resources
             return isAlive;
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject damageDealer, float damage)
         {
-            // Mathf.Max function to keep health from going below 0
+            // Mathf.Max function to keep health reaching negative values
             health = Mathf.Max(health - damage, 0);
             if (health == 0 && isAlive)
             {
@@ -30,8 +30,18 @@ namespace RPG.Resources
                 isAlive = false;
                 GetComponent<ActionScheduler>().CancelCurrentAction();
                 GetComponent<CapsuleCollider>().enabled = false;
+                GiveExperience(damageDealer);
             }
             Debug.Log("Current health: " + health);
+        }
+
+        private void GiveExperience(GameObject damageDealer)
+        {
+            Experience experience = damageDealer.GetComponent<Experience>();
+            if (experience != null)
+            {
+                experience.GainEXP(GetComponent<BaseStats>().GetExperiencePts());
+            }
         }
 
         public float GetHealthAsPercentage()

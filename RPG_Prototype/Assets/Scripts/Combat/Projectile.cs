@@ -14,6 +14,7 @@ namespace RPG.Combat
         [SerializeField] float maxLifetime = 10f;
 
         Health target = null;
+        GameObject damageDealer = null;
         float damage = 0;
 
         private void Start()
@@ -32,9 +33,10 @@ namespace RPG.Combat
             transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
         }
 
-        public void SetTarget(Health target, float damage)
+        public void SetTarget(Health target, GameObject damageDealer, float damage)
         {
             this.target = target;
+            this.damageDealer = damageDealer;
             this.damage = damage;
             Destroy(gameObject, maxLifetime);
         }
@@ -52,7 +54,7 @@ namespace RPG.Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Health>() != target) return;
-            target.TakeDamage(this.damage);
+            target.TakeDamage(damageDealer, damage);
             if (hitEffect != null)
             {
                 Instantiate(hitEffect, GetAimLocation(), transform.rotation);
