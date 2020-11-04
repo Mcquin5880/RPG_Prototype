@@ -13,7 +13,14 @@ namespace RPG.Stats
         public float GetStat(Stat stat, CharacterClass characterClass, int level)
         {
             BuildProgressionDict();
-            return progressionDict[characterClass][stat][level];          
+
+            float[] levels =  progressionDict[characterClass][stat];     
+            if (levels.Length < level)
+            {
+                return 0;
+            }
+
+            return levels[level - 1];
         }
 
         private void BuildProgressionDict()
