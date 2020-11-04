@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36359823cffbbd439311688e614e3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regenerationPercentage: 100
 --- !u!114 &4679919216173909765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,9 +245,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99705fadb432a484a9442b59b8f16ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingLevel: 4
+  startingLevel: 1
   charClass: 0
   progression: {fileID: 11400000, guid: a3ba883e4abfecb4dba46c7bb4e375a3, type: 2}
+  levelUpParticleEffect: {fileID: 2536990879439040427, guid: 29644ca65d88b5f459590a63743033b8,
+    type: 3}
 --- !u!114 &3589282693447753591
 MonoBehaviour:
   m_ObjectHideFlags: 0

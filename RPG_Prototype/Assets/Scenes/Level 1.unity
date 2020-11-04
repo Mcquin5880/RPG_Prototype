@@ -2014,6 +2014,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 597314203}
     m_Modifications:
+    - target: {fileID: 6494961476669153350, guid: 6422e9f303aed96429b7511b6336bfec,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: 38242c80-ca0c-4067-9540-cbf249e9bdd7
+      objectReference: {fileID: 0}
     - target: {fileID: 9187594939080857894, guid: 6422e9f303aed96429b7511b6336bfec,
         type: 3}
       propertyPath: m_Name
@@ -3117,6 +3122,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 597314203}
     m_Modifications:
+    - target: {fileID: 6494961476669153350, guid: 6422e9f303aed96429b7511b6336bfec,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: 0426c2f9-265e-496b-8b51-71fd7906fde7
+      objectReference: {fileID: 0}
     - target: {fileID: 9187594939080857894, guid: 6422e9f303aed96429b7511b6336bfec,
         type: 3}
       propertyPath: m_Name
@@ -3818,6 +3828,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 597314203}
     m_Modifications:
+    - target: {fileID: 6494961476669153350, guid: 6422e9f303aed96429b7511b6336bfec,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: aab57412-3432-47fd-a818-89c8ee28e8c1
+      objectReference: {fileID: 0}
     - target: {fileID: 9187594939080857894, guid: 6422e9f303aed96429b7511b6336bfec,
         type: 3}
       propertyPath: m_Name
@@ -11662,6 +11677,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7083459411101024979, guid: 34cf7b5f555905d43b7262c832058ee4,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: 0e261b25-6be5-4f82-be26-bc02dc9ce90e
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34cf7b5f555905d43b7262c832058ee4, type: 3}
 --- !u!1001 &1332528770
@@ -14550,7 +14570,7 @@ PrefabInstance:
     - target: {fileID: 7434005012156581668, guid: 01673df5c86371d40b28215338470e1f,
         type: 3}
       propertyPath: startingLevel
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8446642729287961693, guid: 01673df5c86371d40b28215338470e1f,
         type: 3}
@@ -14979,6 +14999,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083459411101024979, guid: 34cf7b5f555905d43b7262c832058ee4,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: a6e59581-aa22-4c9d-8cfb-b73f73858dcc
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34cf7b5f555905d43b7262c832058ee4, type: 3}

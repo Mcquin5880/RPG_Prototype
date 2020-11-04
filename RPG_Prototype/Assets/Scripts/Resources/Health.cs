@@ -2,21 +2,24 @@
 using RPG.Saving;
 using RPG.Core;
 using RPG.Stats;
+using System;
 
 namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
+        [SerializeField] float regenerationPercentage = 100;
         float health = -1f;
         bool isAlive = true;
 
         private void Start()
         {
+            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
             if (health < 0)
             {
                 health = GetComponent<BaseStats>().GetStat(Stat.Health);
             }
-        }
+        }        
 
         public bool IsAlive()
         {
@@ -25,6 +28,8 @@ namespace RPG.Resources
 
         public void TakeDamage(GameObject damageDealer, float damage)
         {
+            print(gameObject.name + " took damage: " + damage);
+
             // Mathf.Max function to keep health reaching negative values
             health = Mathf.Max(health - damage, 0);
             if (health == 0 && isAlive)
@@ -38,6 +43,21 @@ namespace RPG.Resources
             Debug.Log("Current health: " + health);
         }
 
+        public float GetHealthPoints()
+        {
+            return health;
+        }
+
+        public float GetMaxHealthPoints()
+        {
+            return GetComponent<BaseStats>().GetStat(Stat.Health);
+        }
+
+        public float GetHealthAsPercentage()
+        {
+            return 100 * health / GetComponent<BaseStats>().GetStat(Stat.Health);
+        }
+
         private void GiveExperience(GameObject damageDealer)
         {
             Experience experience = damageDealer.GetComponent<Experience>();
@@ -47,9 +67,10 @@ namespace RPG.Resources
             }
         }
 
-        public float GetHealthAsPercentage()
+        private void RegenerateHealth()
         {
-            return 100 * health / GetComponent<BaseStats>().GetStat(Stat.Health);
+            float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health) * (regenerationPercentage / 100);
+            health = Mathf.Max(health, regenHealthPoints);
         }
 
         // -----------------------------------------------------------------------------------------------------------------------
