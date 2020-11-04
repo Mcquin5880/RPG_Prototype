@@ -18,6 +18,11 @@ PrefabInstance:
       propertyPath: characterClass
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 778142257479167107, guid: 6422e9f303aed96429b7511b6336bfec,
+        type: 3}
+      propertyPath: charClass
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1379422929038949597, guid: 6422e9f303aed96429b7511b6336bfec,
         type: 3}
       propertyPath: m_IsKinematic
