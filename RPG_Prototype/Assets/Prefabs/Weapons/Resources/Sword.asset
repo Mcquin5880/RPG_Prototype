@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   weaponDamage: 10
+  percentDamageBonus: 50
   attackRange: 2
   equipPrefab: {fileID: 5881346849542618248, guid: bdb86138737efb94d981441630dcca5a,
     type: 3}

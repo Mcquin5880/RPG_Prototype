@@ -4,10 +4,11 @@ using UnityEngine;
 using RPG.Core;
 using RPG.Resources;
 using RPG.Stats;
+using System.Collections.Generic;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         [SerializeField] float timeBetweenAttacks = 1f;     
         [SerializeField] Transform rightHandSpawnPoint = null;
@@ -108,6 +109,22 @@ namespace RPG.Combat
             GetComponent<MovementHandler>().Cancel();
         }
 
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetWeaponDamage();
+            }
+        }
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetPercentageBonus();
+            }
+        }
+
+
         private bool InRangeOfTarget()
         {
             return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetAttackRange();
@@ -123,6 +140,6 @@ namespace RPG.Combat
             string weaponName = (string) state;
             Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
-        }
+        }       
     }
 }

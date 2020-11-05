@@ -250,6 +250,7 @@ MonoBehaviour:
   progression: {fileID: 11400000, guid: a3ba883e4abfecb4dba46c7bb4e375a3, type: 2}
   levelUpParticleEffect: {fileID: 2536990879439040427, guid: 29644ca65d88b5f459590a63743033b8,
     type: 3}
+  shouldUseModifiers: 1
 --- !u!114 &3589282693447753591
 MonoBehaviour:
   m_ObjectHideFlags: 0
