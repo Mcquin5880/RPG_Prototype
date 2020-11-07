@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using RPG.Movement;
 using RPG.Combat;
 using RPG.Resources;
@@ -31,11 +32,21 @@ namespace RPG.Control
 
         private void Update()
         {
-            if (!health.IsAlive()) return;
+            if (InteractingWithUI()) return;
+            if (!health.IsAlive())
+            {
+                SetMouseCursorType(MouseCursorType.None);
+                return;
+            }
             if (CombatInteraction()) return;
             if (MovementInteraction()) return;
             Debug.Log("Raycast hitting neither movement or combat interaction");
             SetMouseCursorType(MouseCursorType.None);
+        }
+
+        private bool InteractingWithUI()
+        {
+            return EventSystem.current.IsPointerOverGameObject();
         }
 
         private bool CombatInteraction()
