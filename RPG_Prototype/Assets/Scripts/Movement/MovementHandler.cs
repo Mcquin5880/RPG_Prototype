@@ -15,12 +15,17 @@ namespace RPG.Movement
         Animator animator;
         Health health;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
             health = GetComponent<Health>();
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+
         }
 
         // Update is called once per frame
@@ -81,7 +86,6 @@ namespace RPG.Movement
             GetComponent<NavMeshAgent>().enabled = false;
             transform.position = position.ToVector();
             GetComponent<NavMeshAgent>().enabled = true;
-
         }
     }
 }

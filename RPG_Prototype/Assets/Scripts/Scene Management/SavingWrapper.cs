@@ -17,9 +17,9 @@ namespace RPG.SceneManagement
 
         private IEnumerator LoadLastScene()
         {
+            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
             SceneTransitionFader sceneTransitionFader = FindObjectOfType<SceneTransitionFader>();
             sceneTransitionFader.InstantFadeOut();
-            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
             yield return sceneTransitionFader.FadeIn(2);
         }
 

@@ -9,7 +9,22 @@ namespace RPG.Control
     {
         Health health;
 
-        private void Start()
+        enum MouseCursorType
+        {
+            None, Movement, Combat
+        }
+
+        [System.Serializable]
+        struct CursorMapping
+        {
+            public MouseCursorType type;
+            public Texture2D texture;
+            public Vector2 hotspot;
+        }
+
+        [SerializeField] CursorMapping[] cursorMappings = null;
+
+        private void Awake()
         {
             health = GetComponent<Health>();
         }
@@ -17,10 +32,10 @@ namespace RPG.Control
         private void Update()
         {
             if (!health.IsAlive()) return;
-
             if (CombatInteraction()) return;
             if (MovementInteraction()) return;
-            print("Raycast hitting neither movement or combat interaction");
+            Debug.Log("Raycast hitting neither movement or combat interaction");
+            SetMouseCursorType(MouseCursorType.None);
         }
 
         private bool CombatInteraction()
@@ -40,6 +55,7 @@ namespace RPG.Control
                 {
                     GetComponent<Fighter>().Attack(target.gameObject);
                 }
+                SetMouseCursorType(MouseCursorType.Combat);
                 return true;
             }
             return false;
@@ -55,9 +71,28 @@ namespace RPG.Control
                 {
                     GetComponent<MovementHandler>().StartMoveAction(hit.point, 1f);
                 }
+                SetMouseCursorType(MouseCursorType.Movement);
                 return true;
             }
             return false;
+        }
+
+        private void SetMouseCursorType(MouseCursorType type)
+        {
+            CursorMapping mapping = GetCursorMapping(type);
+            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+        }
+
+        private CursorMapping GetCursorMapping(MouseCursorType type)
+        {
+            foreach (CursorMapping mapping in cursorMappings)
+            {
+                if (mapping.type == type)
+                {
+                    return mapping;
+                }
+            }
+            return cursorMappings[0];
         }
 
         private static Ray GetRay()
