@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using RPG.Movement;
-using RPG.Combat;
 using RPG.Resources;
 using System;
+using UnityEngine.AI;
 
 namespace RPG.Control
 {
@@ -20,6 +20,8 @@ namespace RPG.Control
         }
 
         [SerializeField] CursorMapping[] cursorMappings = null;
+        [SerializeField] float maxNavMeshRayDistance = 1f;
+        [SerializeField] float maxNavMeshPathLength = 40f;
 
         private void Awake()
         {
@@ -28,6 +30,11 @@ namespace RPG.Control
 
         private void Update()
         {
+            ProcessPlayerInteractions();
+        }
+
+        private void ProcessPlayerInteractions()
+        {
             if (InteractingWithUI()) return;
             if (!health.IsAlive())
             {
@@ -35,14 +42,18 @@ namespace RPG.Control
                 return;
             }
             if (InteractWithRaycastable()) return;
-            //if (CombatInteraction()) return;
             if (MovementInteraction()) return;
             SetMouseCursorType(MouseCursorType.None);
         }
 
+        private bool InteractingWithUI()
+        {
+            return EventSystem.current.IsPointerOverGameObject();
+        }
+
         private bool InteractWithRaycastable()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetRay());
+            RaycastHit[] hits = SortRaycastHitsByDistance();
             foreach (RaycastHit hit in hits)
             {
                 IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
@@ -58,39 +69,30 @@ namespace RPG.Control
             }
             return false;
         }
-        /*
-        private bool CombatInteraction()
+
+        private RaycastHit[] SortRaycastHitsByDistance()
         {
             RaycastHit[] hits = Physics.RaycastAll(GetRay());
-            foreach (RaycastHit hit in hits)
+            float[] distances = new float[hits.Length];
+
+            for (int i = 0; i < hits.Length; i++)
             {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null) continue;
-
-                if (!GetComponent<Fighter>().CanAttack(target.gameObject))
-                {
-                    continue;
-                }
-
-                if (Input.GetMouseButton(0))
-                {
-                    GetComponent<Fighter>().Attack(target.gameObject);
-                }
-                SetMouseCursorType(MouseCursorType.Combat);
-                return true;
+                distances[i] = hits[i].distance;
             }
-            return false;
-        }
-        */
-        private bool MovementInteraction()
-        {
-            RaycastHit hit;
 
-            if (Physics.Raycast(GetRay(), out hit, 100))
+            Array.Sort(distances, hits);
+            return hits;
+        }
+     
+        private bool MovementInteraction()
+        {         
+            Vector3 target;
+            bool hasHit = RaycastToNavMesh(out target);
+            if (hasHit)
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<MovementHandler>().StartMoveAction(hit.point, 1f);
+                    GetComponent<MovementHandler>().StartMoveAction(target, 1f);
                 }
                 SetMouseCursorType(MouseCursorType.Movement);
                 return true;
@@ -98,9 +100,41 @@ namespace RPG.Control
             return false;
         }
 
-        private bool InteractingWithUI()
+        private bool RaycastToNavMesh(out Vector3 target)
         {
-            return EventSystem.current.IsPointerOverGameObject();
+            target = new Vector3();
+            RaycastHit hit;
+            bool hasHit = Physics.Raycast(GetRay(), out hit);
+            if (!hasHit) return false;
+
+            NavMeshHit navMeshHit;
+            bool hasCastToNavMesh = NavMesh.SamplePosition(hit.point, out navMeshHit, maxNavMeshRayDistance, NavMesh.AllAreas);
+            if (!hasCastToNavMesh) return false;
+
+            target = navMeshHit.position;
+
+            // calculating distance from player to raycast hit point on navmesh to handle paths that are too long
+            NavMeshPath path = new NavMeshPath();
+            bool hasPath = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, path);
+            if (!hasPath || path.status != NavMeshPathStatus.PathComplete) return false;
+            if (CalculatePathLength(path) > maxNavMeshPathLength) return false;
+
+            return true;
+        }
+
+        private float CalculatePathLength(NavMeshPath path)
+        {
+            float sum = 0;
+            if (path.corners.Length < 2)
+            {
+                return sum;
+            }
+            for (int i = 0; i < path.corners.Length - 1; i++)
+            {
+                sum += Vector3.Distance(path.corners[i], path.corners[i + 1]);
+            }
+
+            return sum;
         }
 
         private void SetMouseCursorType(MouseCursorType type)
