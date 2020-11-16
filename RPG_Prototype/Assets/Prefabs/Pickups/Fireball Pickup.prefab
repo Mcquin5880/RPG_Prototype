@@ -99,6 +99,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2423819649912720828, guid: bd4fbc653ec0256409535bd1ef0a9cc1,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423819649912720828, guid: bd4fbc653ec0256409535bd1ef0a9cc1,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423819649912720828, guid: bd4fbc653ec0256409535bd1ef0a9cc1,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3452401502435098313, guid: bd4fbc653ec0256409535bd1ef0a9cc1,
         type: 3}
       propertyPath: m_Name

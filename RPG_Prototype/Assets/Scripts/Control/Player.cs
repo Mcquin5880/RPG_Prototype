@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using RPG.Movement;
 using RPG.Combat;
 using RPG.Resources;
+using System;
 
 namespace RPG.Control
 {
@@ -38,17 +39,31 @@ namespace RPG.Control
                 SetMouseCursorType(MouseCursorType.None);
                 return;
             }
-            if (CombatInteraction()) return;
+            if (InteractWithRaycastable()) return;
+            //if (CombatInteraction()) return;
             if (MovementInteraction()) return;
-            Debug.Log("Raycast hitting neither movement or combat interaction");
             SetMouseCursorType(MouseCursorType.None);
         }
 
-        private bool InteractingWithUI()
+        private bool InteractWithRaycastable()
         {
-            return EventSystem.current.IsPointerOverGameObject();
-        }
+            RaycastHit[] hits = Physics.RaycastAll(GetRay());
+            foreach (RaycastHit hit in hits)
+            {
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
 
+                foreach (IRaycastable raycastable in raycastables)
+                {
+                    if (raycastable.HandleRaycast(this))
+                    {
+                        SetMouseCursorType(MouseCursorType.Combat);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        /*
         private bool CombatInteraction()
         {
             RaycastHit[] hits = Physics.RaycastAll(GetRay());
@@ -71,7 +86,7 @@ namespace RPG.Control
             }
             return false;
         }
-
+        */
         private bool MovementInteraction()
         {
             RaycastHit hit;
@@ -86,6 +101,11 @@ namespace RPG.Control
                 return true;
             }
             return false;
+        }
+
+        private bool InteractingWithUI()
+        {
+            return EventSystem.current.IsPointerOverGameObject();
         }
 
         private void SetMouseCursorType(MouseCursorType type)
