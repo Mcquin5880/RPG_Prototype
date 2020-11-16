@@ -9,12 +9,7 @@ namespace RPG.Control
 {
     public class Player : MonoBehaviour
     {
-        Health health;
-
-        enum MouseCursorType
-        {
-            None, Movement, Combat
-        }
+        Health health;      
 
         [System.Serializable]
         struct CursorMapping
@@ -56,7 +51,7 @@ namespace RPG.Control
                 {
                     if (raycastable.HandleRaycast(this))
                     {
-                        SetMouseCursorType(MouseCursorType.Combat);
+                        SetMouseCursorType(raycastable.GetMouseCursorType());
                         return true;
                     }
                 }
