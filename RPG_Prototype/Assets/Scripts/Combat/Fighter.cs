@@ -32,7 +32,7 @@ namespace RPG.Combat
 
             timeSincePreviousAttack += Time.deltaTime;
             
-            if (target == null || !target.IsAlive()) return;
+            if (target == null || target.IsDead()) return;
 
             if (target != null && !InRangeOfTarget())
             {
@@ -91,8 +91,8 @@ namespace RPG.Combat
         {
             if (combatTarget == null) return false;
 
-            Resources.Health targetToTest = combatTarget.GetComponent<Resources.Health>();
-            return targetToTest != null && targetToTest.IsAlive();
+            Health targetToTest = combatTarget.GetComponent<Resources.Health>();
+            return targetToTest != null && !targetToTest.IsDead();
         }
 
         public void Attack(GameObject combatTarget)

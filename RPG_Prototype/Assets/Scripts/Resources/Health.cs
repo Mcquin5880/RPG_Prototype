@@ -2,18 +2,20 @@
 using RPG.Saving;
 using RPG.Core;
 using RPG.Stats;
-using System;
+using UnityEngine.Events;
 
 namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float regenerationPercentage = 100;
+        [SerializeField] UnityEvent takeDamage;
+
         float health = -1f;
-        bool isAlive = true;
+        bool isDead = false;
 
         private void Start()
-        {
+        {       
             if (health < 0)
             {
                 health = GetComponent<BaseStats>().GetStat(Stat.Health);
@@ -30,26 +32,32 @@ namespace RPG.Resources
             GetComponent<BaseStats>().onLevelUp -= RegenerateHealth;
         }
 
-        public bool IsAlive()
+        public bool IsDead()
         {
-            return isAlive;
+            return isDead;
         }
 
         public void TakeDamage(GameObject damageDealer, float damage)
-        {
-            print(gameObject.name + " took damage: " + damage);
-
-            // Mathf.Max function to keep health reaching negative values
+        {       
+            // Mathf.Max function to keep health from reaching negative values
             health = Mathf.Max(health - damage, 0);
-            if (health == 0 && isAlive)
+            if (health == 0 && !IsDead())
             {
-                GetComponent<Animator>().SetTrigger("die");
-                isAlive = false;
-                GetComponent<ActionScheduler>().CancelCurrentAction();
-                GetComponent<CapsuleCollider>().enabled = false;
-                GiveExperience(damageDealer);
+                Die(damageDealer);
             }
-            Debug.Log("Current health: " + health);
+            else
+            {
+                takeDamage.Invoke();
+            }
+        }
+
+        private void Die(GameObject damageDealer)
+        {
+            GetComponent<Animator>().SetTrigger("die");
+            isDead = true;
+            GetComponent<ActionScheduler>().CancelCurrentAction();
+            GetComponent<CapsuleCollider>().enabled = false;
+            GiveExperience(damageDealer);
         }
 
         public float GetHealthPoints()
@@ -97,10 +105,10 @@ namespace RPG.Resources
 
             if (health == 0)
             {
-                if (!isAlive) return;
+                if (isDead) return;
 
                 GetComponent<Animator>().SetTrigger("die");
-                isAlive = false;
+                isDead = true;
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             }
         }

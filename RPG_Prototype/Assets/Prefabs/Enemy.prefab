@@ -123,10 +123,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2161106567820743505, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5130328800086470906, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
         type: 3}
       propertyPath: maximumSpeed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6053249519835819924, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6968466837073087007, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
         type: 3}
@@ -138,7 +148,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponSpawnPoint
       value: 
-      objectReference: {fileID: 9223194938760263945}
+      objectReference: {fileID: 0}
     - target: {fileID: 6968466837073087007, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
         type: 3}
       propertyPath: defaultWeapon
@@ -149,12 +159,12 @@ PrefabInstance:
         type: 3}
       propertyPath: leftHandSpawnPoint
       value: 
-      objectReference: {fileID: 9223194938760321291}
+      objectReference: {fileID: 3892203314541716942}
     - target: {fileID: 6968466837073087007, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
         type: 3}
       propertyPath: rightHandSpawnPoint
       value: 
-      objectReference: {fileID: 9223194938760263945}
+      objectReference: {fileID: 3892203314541643212}
     m_RemovedComponents:
     - {fileID: -2950412062490310880, guid: 239db3ac040868b4eb8fc5ff86c9d5ff, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 239db3ac040868b4eb8fc5ff86c9d5ff, type: 3}
@@ -164,15 +174,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7062369992481707224}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &9223194938760321291 stripped
+--- !u!4 &3892203314541716942 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2161106567821086163, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+  m_CorrespondingSourceObject: {fileID: 6053249519835640086, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
     type: 3}
   m_PrefabInstance: {fileID: 7062369992481707224}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &9223194938760263945 stripped
+--- !u!4 &3892203314541643212 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2161106567821028817, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
+  m_CorrespondingSourceObject: {fileID: 6053249519835566356, guid: 239db3ac040868b4eb8fc5ff86c9d5ff,
     type: 3}
   m_PrefabInstance: {fileID: 7062369992481707224}
   m_PrefabAsset: {fileID: 0}

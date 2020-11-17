@@ -36,7 +36,7 @@ namespace RPG.Control
         private void ProcessPlayerInteractions()
         {
             if (InteractingWithUI()) return;
-            if (!health.IsAlive())
+            if (health.IsDead())
             {
                 SetMouseCursorType(MouseCursorType.None);
                 return;

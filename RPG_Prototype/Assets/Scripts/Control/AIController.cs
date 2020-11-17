@@ -40,7 +40,7 @@ namespace RPG.Control
 
         private void Update()
         {
-            if (!health.IsAlive()) return;
+            if (health.IsDead()) return;
 
             if (InAttackRange() && fighter.CanAttack(player))
             {
