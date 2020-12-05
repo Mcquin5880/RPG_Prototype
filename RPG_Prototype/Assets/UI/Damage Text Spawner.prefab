@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5825df3f434344d4f878d08bd5b6d8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageTextPrefab: {fileID: 2813933827954484482, guid: 591801ff832bf6043b0013229d5c3dc5,
+  damageTextPrefab: {fileID: 1411719951132378691, guid: 458403005be4d5e498a0998c6633dd92,
     type: 3}

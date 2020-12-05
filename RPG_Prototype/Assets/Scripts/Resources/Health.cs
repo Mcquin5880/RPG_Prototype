@@ -9,7 +9,7 @@ namespace RPG.Resources
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float regenerationPercentage = 100;
-        [SerializeField] UnityEvent takeDamage;
+        [SerializeField] TakeDamageEvent takeDamage;
 
         float health = -1f;
         bool isDead = false;
@@ -20,16 +20,6 @@ namespace RPG.Resources
             {
                 health = GetComponent<BaseStats>().GetStat(Stat.Health);
             }
-        }
-
-        private void OnEnable()
-        {
-            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
-        }
-
-        private void OnDisable()
-        {
-            GetComponent<BaseStats>().onLevelUp -= RegenerateHealth;
         }
 
         public bool IsDead()
@@ -43,21 +33,13 @@ namespace RPG.Resources
             health = Mathf.Max(health - damage, 0);
             if (health == 0 && !IsDead())
             {
+                takeDamage.Invoke(damage);
                 Die(damageDealer);
             }
             else
             {
-                takeDamage.Invoke();
+                takeDamage.Invoke(damage);
             }
-        }
-
-        private void Die(GameObject damageDealer)
-        {
-            GetComponent<Animator>().SetTrigger("die");
-            isDead = true;
-            GetComponent<ActionScheduler>().CancelCurrentAction();
-            GetComponent<CapsuleCollider>().enabled = false;
-            GiveExperience(damageDealer);
         }
 
         public float GetHealthPoints()
@@ -75,6 +57,15 @@ namespace RPG.Resources
             return 100 * health / GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
+        private void Die(GameObject damageDealer)
+        {
+            GetComponent<Animator>().SetTrigger("die");
+            isDead = true;
+            GetComponent<ActionScheduler>().CancelCurrentAction();
+            GetComponent<CapsuleCollider>().enabled = false;
+            GiveExperience(damageDealer);
+        }
+
         private void GiveExperience(GameObject damageDealer)
         {
             Experience experience = damageDealer.GetComponent<Experience>();
@@ -88,6 +79,16 @@ namespace RPG.Resources
         {
             float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health) * (regenerationPercentage / 100);
             health = Mathf.Max(health, regenHealthPoints);
+        }
+
+        private void OnEnable()
+        {
+            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
+        }
+
+        private void OnDisable()
+        {
+            GetComponent<BaseStats>().onLevelUp -= RegenerateHealth;
         }
 
         // -----------------------------------------------------------------------------------------------------------------------
@@ -111,6 +112,14 @@ namespace RPG.Resources
                 isDead = true;
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             }
+        }
+
+        // this class is a work-around for issues passing around parameters using Unity Events. Couldn't declare
+        // UnityEvent<float> normally as aSserializeField global variable
+
+        [System.Serializable]
+        public class TakeDamageEvent : UnityEvent<float>
+        {
         }
     }
 }

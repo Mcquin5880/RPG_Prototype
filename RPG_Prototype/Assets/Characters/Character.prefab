@@ -182,7 +182,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5794847337748633000}
         m_MethodName: Spawn
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
