@@ -4,7 +4,7 @@ using RPG.Core;
 using RPG.Stats;
 using UnityEngine.Events;
 
-namespace RPG.Resources
+namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
@@ -54,7 +54,12 @@ namespace RPG.Resources
 
         public float GetHealthAsPercentage()
         {
-            return 100 * health / GetComponent<BaseStats>().GetStat(Stat.Health);
+            return 100 * GetFraction();
+        }
+
+        public float GetFraction()
+        {
+            return health / GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
         private void Die(GameObject damageDealer)

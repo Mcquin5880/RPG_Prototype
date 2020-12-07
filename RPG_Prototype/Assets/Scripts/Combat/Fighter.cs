@@ -2,7 +2,7 @@
 using RPG.Saving;
 using UnityEngine;
 using RPG.Core;
-using RPG.Resources;
+using RPG.Attributes;
 using RPG.Stats;
 using System.Collections.Generic;
 
@@ -91,14 +91,14 @@ namespace RPG.Combat
         {
             if (combatTarget == null) return false;
 
-            Health targetToTest = combatTarget.GetComponent<Resources.Health>();
+            Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
 
         public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.GetComponent<Resources.Health>();   
+            target = combatTarget.GetComponent<Health>();   
         }
 
         public void Cancel()
